@@ -1,0 +1,22 @@
+ void Clamp()
+    {
+        // カメラの左下の座標を取得
+        Vector3 min = Camera.main.ViewportToWorldPoint(Vector2.zero);
+        // カメラの右上の座標を取得
+        Vector3 max= Camera.main.ViewportToWorldPoint(Vector2.one);
+
+        // 現在の表示位置を保存
+        Vector3 pos = transform.position;
+
+        // 表示位置をカメラ座標に収める
+        pos.x = Mathf.Clamp(pos.x, min.x, max.x);
+        pos.y = Mathf.Clamp(pos.y, min.y, max.y);
+
+        // 表示位置をセット
+        transform.position = pos;
+    }
+
+void Update()
+{
+   Clamp(); // 行動範囲制限
+}
